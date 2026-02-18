@@ -83,7 +83,7 @@ const DatabaseView = () => (
             <th className="px-6 py-4">Status</th>
             <th className="px-6 py-4">Last Payment</th>
           </tr>
-        </thead>
+        </thead> <th className="px-6 py-4 text-right">Actions</th>
         <tbody className="divide-y divide-gray-100">
           {SAMPLE_MEMBERS.map((m) => (
             <tr key={m.id} className="hover:bg-gray-50">
@@ -94,7 +94,10 @@ const DatabaseView = () => (
                 <span className="px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">{m.status}</span>
               </td>
               <td className="px-6 py-4 text-gray-500">{m.lastPaymentDate}</td>
-            </tr>
+            </tr> <td className="px-6 py-4 text-right space-x-2">
+  <button className="text-amber-600 hover:text-amber-700 font-medium text-xs">Edit</button>
+  <button className="text-red-600 hover:text-red-700 font-medium text-xs">Delete</button>
+</td>
           ))}
         </tbody>
       </table>
