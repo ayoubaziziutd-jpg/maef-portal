@@ -10,6 +10,11 @@ import {
   Database, Layers, BarChart3, Scale, ArrowLeft,
   Shield, Trash2, Edit3, Bell, CheckCircle2, X, AlertCircle
 } from 'lucide-react';
+import Calculator from './dashboard/Calculator';
+import FinancialDashboard from './dashboard/Dashboard';
+import Projections from './dashboard/Projections';
+import ClaimsTool from './dashboard/ClaimsTool';
+import Reserves from './dashboard/Reserves';
 
 interface EmployeePortalProps {
   onBack: () => void;
@@ -24,6 +29,7 @@ const SAMPLE_REQUESTS: MembershipRequest[] = [
 
 const EmployeePortal: React.FC<EmployeePortalProps> = ({ onBack }) => {
   const [activeTab, setActiveTab] = useState<EmployeeTab>('requests');
+  const [financialsTab, setFinancialsTab] = useState<'calculator' | 'dashboard' | 'projections' | 'claims' | 'reserves'>('dashboard');
   const [requests, setRequests] = useState<MembershipRequest[]>(SAMPLE_REQUESTS);
   const pendingCount = requests.filter(r => r.status === 'Pending Review').length;
 
@@ -71,8 +77,23 @@ const EmployeePortal: React.FC<EmployeePortalProps> = ({ onBack }) => {
         {activeTab === 'coverage' && <CoverageModelingSection />}
         {activeTab === 'legal' && <LegalSection />}
         {activeTab === 'dashboard' && (
-          <div className="max-w-4xl mx-auto p-12 text-center bg-white rounded-2xl border">
-            <h2 className="text-2xl font-bold text-gray-400">Financials Dashboard — Coming Soon</h2>
+          <div>
+            <div className="flex gap-2 mb-6 border-b pb-2">
+              {(['dashboard', 'projections', 'claims', 'reserves', 'calculator'] as const).map(tab => (
+                <button
+                  key={tab}
+                  onClick={() => setFinancialsTab(tab)}
+                  className={`px-4 py-2 rounded-t text-sm font-medium ${financialsTab === tab ? 'bg-white border-b-2 border-emerald-600 text-emerald-700' : 'text-gray-500 hover:text-gray-700'}`}
+                >
+                  {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                </button>
+              ))}
+            </div>
+            {financialsTab === 'dashboard' && <FinancialDashboard />}
+            {financialsTab === 'projections' && <Projections />}
+            {financialsTab === 'claims' && <ClaimsTool />}
+            {financialsTab === 'reserves' && <Reserves />}
+            {financialsTab === 'calculator' && <Calculator />}
           </div>
         )}
       </main>
