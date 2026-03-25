@@ -91,7 +91,7 @@ const Reserves: React.FC = () => {
                    <CartesianGrid strokeDasharray="3 3" vertical={false} />
                    <XAxis dataKey="name" />
                    <YAxis tickFormatter={(val) => `$${(val/1000).toFixed(0)}k`} />
-                   <Tooltip formatter={(val: number) => `$${Math.round(val).toLocaleString()}`} />
+                   <Tooltip formatter={(val: unknown) => typeof val === 'number' ? `$${Math.round(val).toLocaleString()}` : String(val)} />
                    <Bar dataKey="value" fill="#3B82F6" radius={[4, 4, 0, 0]} />
                    <ReferenceLine y={totalRequired} label="Target Reserves" stroke="green" strokeDasharray="3 3" />
                  </BarChart>

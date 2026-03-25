@@ -103,7 +103,7 @@ const Projections: React.FC = () => {
                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E7EB" />
                    <XAxis dataKey="year" tickFormatter={(val) => `Year ${val}`} />
                    <YAxis tickFormatter={(val) => `$${(val/1000).toFixed(0)}k`} />
-                   <Tooltip formatter={(val: number) => `$${val.toLocaleString()}`} />
+                   <Tooltip formatter={(val: unknown) => typeof val === 'number' ? `$${val.toLocaleString()}` : String(val)} />
                    <Legend />
                    <Area type="monotone" dataKey="premiumRevenue" name="Revenue" stroke="#059669" fillOpacity={1} fill="url(#colorRev)" />
                    <Area type="monotone" dataKey="expectedClaims" name="Claims" stroke="#DC2626" fillOpacity={1} fill="url(#colorClaims)" />
@@ -121,7 +121,7 @@ const Projections: React.FC = () => {
                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E7EB" />
                    <XAxis dataKey="year" tickFormatter={(val) => `Year ${val}`} />
                    <YAxis tickFormatter={(val) => `$${(val/1000).toFixed(0)}k`} />
-                   <Tooltip formatter={(val: number) => `$${val.toLocaleString()}`} />
+                   <Tooltip formatter={(val: unknown) => typeof val === 'number' ? `$${val.toLocaleString()}` : String(val)} />
                    <Line type="monotone" dataKey="reserves" name="Total Reserves" stroke="#4F46E5" strokeWidth={3} dot={{r: 4}} />
                  </LineChart>
                </ResponsiveContainer>

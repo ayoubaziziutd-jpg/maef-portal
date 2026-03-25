@@ -435,7 +435,7 @@ const CoverageModelingSection = () => {
                 <CartesianGrid strokeDasharray="3 3" vertical={false} />
                 <XAxis dataKey="year" type="number" domain={[1, 5]} tickFormatter={v => `Yr ${v}`} />
                 <YAxis tickFormatter={v => `$${(v / 1000).toFixed(0)}k`} />
-                <Tooltip formatter={(v: number | undefined) => v != null ? `$${v.toLocaleString()}` : ''} />
+                <Tooltip formatter={(v: unknown) => typeof v === 'number' ? `$${v.toLocaleString()}` : ''} />
                 <Legend />
                 {scenarioData.map((sd, idx) => (
                   <Line key={sd.label} data={sd.projections} dataKey="reserves" name={sd.label}
