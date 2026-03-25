@@ -10,7 +10,7 @@
 
 **Goal:** Merge `mafs-member-portal` and `mafs-financial-dashboard` into a single `mafs-portal/` Vite app. All existing screens work. Financial dashboard components live inside the staff portal's Financials tab. No new features — migration only.
 
-**Plans:** 1/3 plans executed
+**Plans:** 2/3 plans executed
 
 Plans:
 - [x] 01-01-PLAN.md — Scaffold mafs-portal/ and merge engine/types/constants
