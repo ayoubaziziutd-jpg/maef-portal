@@ -1,7 +1,7 @@
 [build]
   base    = "mafs-portal"
   command = "npm run build"
-  publish = "mafs-portal/dist"
+  publish = "dist"
 
 [[redirects]]
   from   = "/*"
