@@ -1,0 +1,9 @@
+[build]
+  base    = "mafs-portal"
+  command = "npm run build"
+  publish = "mafs-portal/dist"
+
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 200
